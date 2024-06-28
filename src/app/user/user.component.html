@@ -1,0 +1,20 @@
+<div *ngIf="user$ | async as user">
+    <h2>{{ user.name }}</h2>
+    <p>{{ user.email }}</p>
+    <p>{{ user.address.street }}</p>
+    <p>{{ user.phone }}</p>
+    <p>{{ user.website }}</p>
+  
+    <h3>Posts</h3>
+    <ul>
+      <li *ngFor="let post of posts$ | async">
+        {{ post.title }}
+        <button (click)="showComments(post.id)">Show Comments</button>
+        <ul *ngIf="comments$ | async as comments">
+          <li *ngFor="let comment of comments">
+            {{ comment.body }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
